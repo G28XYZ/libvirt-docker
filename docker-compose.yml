@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  libvirt-container:
+    container_name: libvirt-container
+    tty: true
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./src
+          target: /libvirt-container/src
+    build:
+      dockerfile: Dockerfile
+    image: compose-libvirt
+    ports:
+      - 18080:80
