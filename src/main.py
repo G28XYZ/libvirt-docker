@@ -34,7 +34,7 @@ async def getList():
         return 'false'
     
 xml = """
-<domain type='kvm'>
+<domain type='qemu'>
   <name>SampleVM</name>
   <memory unit='KiB'>1048576</memory>
   <vcpu placement='static'>1</vcpu>
@@ -80,3 +80,17 @@ async def controlVM(control_type: str):
     # Перезагрузка VM
     if control_type == 'reboot' and domain.isActive():
         domain.reboot()
+
+@app.get('/getCapabilities')
+async def netStat():
+    conn = libvirt.open('qemu:///system')
+    result = ''
+    if conn == None:
+        return 'Failed to open connection to qemu:///system'
+
+    caps = conn.getCapabilities()
+    result = 'Capabilities:\n'+caps
+
+    conn.close()
+
+    return result

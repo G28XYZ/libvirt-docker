@@ -1,4 +1,7 @@
-FROM ubuntu:latest
+###########
+# LIBVIRT #
+###########
+FROM ubuntu:latest as libvirt
 
 # Устанавливаем зависимости
 RUN apt update && apt install -y \
@@ -17,6 +20,7 @@ RUN apt update && apt install -y \
     python3-venv \
     pkg-config \
     libvirt-dev \
+    nginx \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /libvirt-container

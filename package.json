@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "dc:build": "docker-compose -f docker-compose.yml up --build",
+        "dc:watch": "docker-compose -f docker-compose.yml up --watch"
+    }
+}
