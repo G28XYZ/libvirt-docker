@@ -1,7 +1,7 @@
 ###########
 # LIBVIRT #
 ###########
-FROM ubuntu:latest as libvirt
+FROM debian:latest
 
 # Устанавливаем зависимости
 RUN apt update && apt install -y \
@@ -27,10 +27,8 @@ WORKDIR /libvirt-container
 
 COPY . /libvirt-container
 
-RUN pip install --no-cache-dir --upgrade -r /libvirt-container/requirements.txt --break-system-packages
-
-RUN libvirtd -d
+RUN cd /libvirt-container/backend && python3 -m venv .venv && . .venv/bin/activate && pip install --no-cache-dir --upgrade -r /libvirt-container/backend/requirements.txt
 
 EXPOSE 18080
 
-CMD ["fastapi", "run", "/libvirt-container/src/main.py", "--port", "80"]
+CMD bash -c "libvirtd -d" && cd /libvirt-container/backend && . ./.venv/bin/activate && fastapi run ./src/main.py --port 80

@@ -4,11 +4,13 @@ services:
   libvirt-container:
     container_name: libvirt-container
     tty: true
+    environment:
+      - LIBVIRT_CONFIG_PATH=/libvirt-container/backend/.config.yml
     develop:
       watch:
         - action: sync+restart
-          path: ./src
-          target: /libvirt-container/src
+          path: ./backend
+          target: /libvirt-container/backend
     build:
       dockerfile: Dockerfile
     image: compose-libvirt
