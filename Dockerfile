@@ -31,4 +31,4 @@ RUN cd /libvirt-container/backend && python3 -m venv .venv && . .venv/bin/activa
 
 EXPOSE 18080
 
-CMD bash -c "libvirtd -d" && cd /libvirt-container/backend && . ./.venv/bin/activate && fastapi run ./src/main.py --port 80
+CMD bash -c "libvirtd -d & /libvirt-container/create-default-pool.sh" && cd /libvirt-container/backend && . ./.venv/bin/activate && fastapi run ./src/main.py --port 80
