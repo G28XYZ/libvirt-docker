@@ -32,6 +32,6 @@ RUN cd /libvirt-container/backend && python3 -m venv .venv && . .venv/bin/activa
 EXPOSE 8080
 
 # prod
-# CMD bash -c "libvirtd -d" && cd /libvirt-container/backend && . ./.venv/bin/activate && fastapi run ./src/main.py
+# CMD bash -c "libvirtd -d" && cd /libvirt-container/backend && . ./.venv/bin/activate && fastapi run ./src/app.py
 # dev
-CMD bash -c "libvirtd -d" && cd /libvirt-container/backend && . ./.venv/bin/activate && fastapi run ./src/main.py --reload
+CMD bash -c "libvirtd -d" && cd /libvirt-container/backend && . ./.venv/bin/activate && fastapi run ./src/app.py --reload

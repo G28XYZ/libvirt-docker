@@ -7,7 +7,7 @@ services:
     environment:
       - LIBVIRT_CONFIG_PATH=/libvirt-container/backend/.config.yml
     volumes:
-      - E:\code\virtlib-docker\libvirt-docker\backend\src:/libvirt-container/backend/src
+      - .\backend\src:/libvirt-container/backend/src
     develop:
       watch:
         - action: sync
