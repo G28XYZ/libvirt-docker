@@ -29,6 +29,9 @@ COPY . /libvirt-container
 
 RUN cd /libvirt-container/backend && python3 -m venv .venv && . .venv/bin/activate && pip install --no-cache-dir --upgrade -r /libvirt-container/backend/requirements.txt
 
-EXPOSE 18080
+EXPOSE 8080
 
-CMD bash -c "libvirtd -d & /libvirt-container/create-default-pool.sh" && cd /libvirt-container/backend && . ./.venv/bin/activate && fastapi run ./src/main.py --port 80
+# prod
+# CMD bash -c "libvirtd -d" && cd /libvirt-container/backend && . ./.venv/bin/activate && fastapi run ./src/main.py
+# dev
+CMD bash -c "libvirtd -d" && cd /libvirt-container/backend && . ./.venv/bin/activate && fastapi run ./src/main.py --reload

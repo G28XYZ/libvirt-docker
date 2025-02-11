@@ -6,13 +6,31 @@ services:
     tty: true
     environment:
       - LIBVIRT_CONFIG_PATH=/libvirt-container/backend/.config.yml
+    volumes:
+      - E:\code\virtlib-docker\libvirt-docker\backend\src:/libvirt-container/backend/src
     develop:
       watch:
-        - action: sync+restart
+        - action: sync
           path: ./backend
           target: /libvirt-container/backend
     build:
       dockerfile: Dockerfile
     image: compose-libvirt
     ports:
-      - 18080:80
+      - 8080:8000
+
+#   libvirt-webserver:
+#     container_name: libvirt-webserver
+#     tty: true
+#     build:
+#       context: ./nginx
+#       dockerfile: Dockerfile
+#     ports:
+#       - 18000:80
+#     networks:
+#       - libvirt-app-network
+
+
+# networks:
+#   libvirt-app-network:
+#     driver: bridge
