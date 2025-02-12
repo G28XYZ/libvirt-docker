@@ -18,6 +18,7 @@ services:
     image: compose-libvirt
     ports:
       - 8080:8000
+      - 2211:22
 
 #   libvirt-webserver:
 #     container_name: libvirt-webserver
