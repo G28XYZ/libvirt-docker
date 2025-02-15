@@ -37,6 +37,8 @@ COPY . /libvirt-container
 
 RUN cd /libvirt-container/backend && python3 -m venv .venv && . .venv/bin/activate && pip install --no-cache-dir --upgrade -r /libvirt-container/backend/requirements.txt
 
+RUN mkdir -p /var/run/libvirt /run/libvirt && chmod -R 777 /var/run/libvirt /run/libvirt
+
 RUN echo 'root:1' | chpasswd
 
 RUN useradd -m -s /bin/bash user && \

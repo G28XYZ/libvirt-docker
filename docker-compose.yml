@@ -4,6 +4,7 @@ services:
   libvirt-container:
     container_name: libvirt-container
     tty: true
+    privileged: true
     environment:
       - LIBVIRT_CONFIG_PATH=/libvirt-container/backend/.config.yml
     volumes:
